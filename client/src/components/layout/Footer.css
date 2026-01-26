@@ -1,0 +1,29 @@
+.site-footer {
+  background: #0a0a1a;
+  border-top: 1px solid #1e1e3a;
+  padding: 1.5rem 2rem;
+  margin-top: 3rem;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-brand {
+  color: #d4af37;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.footer-disclaimer {
+  color: #555;
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.footer-updated {
+  color: #444;
+  font-size: 0.7rem;
+}

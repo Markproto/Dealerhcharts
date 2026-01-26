@@ -1,0 +1,108 @@
+.spot-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.spot-card {
+  background: #12122a;
+  border: 1px solid #2a2a4a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.spot-card:hover {
+  border-color: #d4af37;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card-metal {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #e0e0e0;
+}
+
+.card-symbol {
+  color: #d4af37;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.card-spot {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  margin-bottom: 1rem;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #1e1e3a;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.card-label {
+  color: #888;
+}
+
+.card-value {
+  color: #c0c0d0;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.card-change {
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  margin-bottom: 0.5rem;
+}
+
+.card-change.up {
+  color: #00c853;
+}
+
+.card-change.down {
+  color: #ff1744;
+}
+
+.card-change.neutral {
+  color: #888;
+}
+
+.card-change-pct {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.card-source {
+  font-size: 0.7rem;
+  color: #555;
+  text-transform: uppercase;
+}
+
+.card-up {
+  border-left: 3px solid #00c853;
+}
+
+.card-down {
+  border-left: 3px solid #ff1744;
+}

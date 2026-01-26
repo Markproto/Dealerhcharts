@@ -1,0 +1,110 @@
+.price-table-wrapper {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.95rem;
+}
+
+.price-table thead th {
+  background: #1a1a2e;
+  color: #c0c0c0;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid #2a2a4a;
+}
+
+.price-table thead th.num {
+  text-align: right;
+}
+
+.price-table tbody tr {
+  border-bottom: 1px solid #1e1e3a;
+  transition: background 0.15s;
+}
+
+.price-table tbody tr:hover {
+  background: #16162e;
+}
+
+.price-table td {
+  padding: 0.85rem 1rem;
+  color: #e0e0e0;
+}
+
+.price-table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.metal-name {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.metal-symbol {
+  font-weight: 700;
+  color: #d4af37;
+  min-width: 2.5rem;
+}
+
+.metal-label {
+  color: #a0a0b8;
+  font-size: 0.85rem;
+}
+
+.price-table td.spot {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.price-table td.change.up {
+  color: #00c853;
+}
+
+.price-table td.change.down {
+  color: #ff1744;
+}
+
+.price-table td.change.neutral {
+  color: #888;
+}
+
+.change-pct {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.source-badge {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.row-up {
+  border-left: 3px solid #00c853;
+}
+
+.row-down {
+  border-left: 3px solid #ff1744;
+}
+
+.row-neutral {
+  border-left: 3px solid transparent;
+}
+
+.price-table-empty {
+  text-align: center;
+  padding: 3rem;
+  color: #888;
+  font-style: italic;
+}

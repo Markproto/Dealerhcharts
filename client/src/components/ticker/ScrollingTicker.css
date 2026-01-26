@@ -1,0 +1,59 @@
+.ticker-bar {
+  background: #0d0d1a;
+  border-bottom: 1px solid #1e1e3a;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0.5rem 0;
+}
+
+.ticker-track {
+  display: inline-flex;
+  animation: ticker-scroll 30s linear infinite;
+}
+
+.ticker-bar:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 1.5rem;
+  font-size: 0.85rem;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.ticker-symbol {
+  font-weight: 700;
+  color: #d4af37;
+}
+
+.ticker-price {
+  color: #e0e0e0;
+}
+
+.ticker-change {
+  font-size: 0.8rem;
+}
+
+.ticker-change.up {
+  color: #00c853;
+}
+
+.ticker-change.down {
+  color: #ff1744;
+}
+
+.ticker-change.neutral {
+  color: #666;
+}
