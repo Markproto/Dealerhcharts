@@ -1,6 +1,7 @@
 const cron = require('node-cron');
 const { METAL_SYMBOLS } = require('shared');
 const cache = require('./cacheManager');
+const { applySpread } = require('./spreadCalculator');
 const { fetchFizTrade } = require('../sources/fiztrade');
 const { fetchFMP } = require('../sources/fmp');
 const { fetchYahoo } = require('../sources/yahoo');
@@ -14,7 +15,7 @@ async function refreshPrices() {
   const fiztradeData = await fetchFizTrade();
   if (fiztradeData) {
     for (const [metal, price] of Object.entries(fiztradeData)) {
-      cache.set(metal, price);
+      cache.set(metal, applySpread(price));
       missing.delete(metal);
     }
     console.log(
@@ -30,7 +31,7 @@ async function refreshPrices() {
     if (fmpData) {
       for (const [metal, price] of Object.entries(fmpData)) {
         if (missing.has(metal)) {
-          cache.set(metal, price);
+          cache.set(metal, applySpread(price));
           missing.delete(metal);
         }
       }
@@ -48,7 +49,7 @@ async function refreshPrices() {
     if (yahooData) {
       for (const [metal, price] of Object.entries(yahooData)) {
         if (missing.has(metal)) {
-          cache.set(metal, price);
+          cache.set(metal, applySpread(price));
           missing.delete(metal);
         }
       }

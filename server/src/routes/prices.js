@@ -21,6 +21,7 @@ router.get('/', (req, res) => {
         ask: cached.ask,
         spot: cached.spot,
         spread: cached.bid && cached.ask ? cached.ask - cached.bid : null,
+        spreadDerived: cached.spreadDerived || false,
         change: cached.change || null,
         changePercent: cached.changePercent || null,
         previousClose: cached.previousClose || null,
