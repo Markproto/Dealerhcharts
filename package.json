@@ -1,0 +1,17 @@
+{
+  "name": "dealercharts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Precious metals pricing platform for dealers",
+  "workspaces": [
+    "client",
+    "server",
+    "shared"
+  ],
+  "scripts": {
+    "dev:server": "npm run dev --workspace=server",
+    "dev:client": "npm run dev --workspace=client",
+    "build:client": "npm run build --workspace=client",
+    "start": "npm run start --workspace=server"
+  }
+}
