@@ -10,6 +10,9 @@ const { startWorker } = require('./services/priceWorker');
 
 const app = express();
 
+// Trust Nginx reverse proxy (needed for rate limiting + correct client IPs)
+app.set('trust proxy', 1);
+
 // Security
 app.use(helmet());
 app.use(
