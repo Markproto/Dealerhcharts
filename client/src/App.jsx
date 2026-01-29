@@ -1,7 +1,9 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useMetalPrices } from './hooks/useMetalPrices';
 import TraditionalLayout from './components/layout/TraditionalLayout';
+import Admin from './pages/Admin';
 
-export default function App() {
+function HomePage() {
   const {
     prices,
     previousPrices,
@@ -20,5 +22,16 @@ export default function App() {
       stale={stale}
       lastUpdated={lastUpdated}
     />
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

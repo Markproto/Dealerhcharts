@@ -6,13 +6,20 @@
   color: #e0e0e0;
 }
 
-.main-content {
+.content-wrapper {
   flex: 1;
-  max-width: 1200px;
+  display: flex;
+  gap: 1.5rem;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 1.5rem 2rem;
   width: 100%;
   box-sizing: border-box;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
 }
 
 .loading-state {
@@ -43,8 +50,14 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 768px) {
-  .main-content {
+  .content-wrapper {
     padding: 1rem;
   }
 }

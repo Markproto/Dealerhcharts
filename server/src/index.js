@@ -6,6 +6,7 @@ const env = require('./config/env');
 const errorHandler = require('./middleware/errorHandler');
 const pricesRouter = require('./routes/prices');
 const healthRouter = require('./routes/health');
+const newsRouter = require('./routes/news');
 const { startWorker } = require('./services/priceWorker');
 
 const app = express();
@@ -24,6 +25,9 @@ app.use(
   })
 );
 
+// Body parsing
+app.use(express.json());
+
 // Rate limiting
 app.use(
   '/api/',
@@ -38,6 +42,7 @@ app.use(
 // Routes
 app.use('/api/prices', pricesRouter);
 app.use('/api/health', healthRouter);
+app.use('/api/news', newsRouter);
 
 // Error handling
 app.use(errorHandler);
