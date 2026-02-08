@@ -6,6 +6,7 @@ const METALS = {
     fmpSymbol: 'GCUSD',
     yahooSymbol: 'GC=F',
     order: 1,
+    isMetal: true,
   },
   XAG: {
     symbol: 'XAG',
@@ -14,6 +15,7 @@ const METALS = {
     fmpSymbol: 'SIUSD',
     yahooSymbol: 'SI=F',
     order: 2,
+    isMetal: true,
   },
   XPT: {
     symbol: 'XPT',
@@ -22,6 +24,7 @@ const METALS = {
     fmpSymbol: 'PLUSD',
     yahooSymbol: 'PL=F',
     order: 3,
+    isMetal: true,
   },
   XPD: {
     symbol: 'XPD',
@@ -30,6 +33,17 @@ const METALS = {
     fmpSymbol: 'PAUSD',
     yahooSymbol: 'PA=F',
     order: 4,
+    isMetal: true,
+  },
+  BTC: {
+    symbol: 'BTC',
+    name: 'Bitcoin',
+    unit: 'coin',
+    fmpSymbol: 'BTCUSD',
+    yahooSymbol: 'BTC-USD',
+    order: 5,
+    isMetal: false,
+    isCrypto: true,
   },
 };
 

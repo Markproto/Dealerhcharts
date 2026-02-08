@@ -11,6 +11,7 @@ const SPREAD_CONFIG = {
   XAG: { spreadPercent: 0.0015 }, // Silver: ~$0.05 on $31 spot
   XPT: { spreadPercent: 0.001 },  // Platinum: ~$1.00 on $1000 spot
   XPD: { spreadPercent: 0.002 },  // Palladium: ~$2.00 on $1000 spot
+  BTC: { spreadPercent: 0.001 },  // Bitcoin: ~$100 on $100k spot
 };
 
 /**
