@@ -17,6 +17,7 @@ export default function Admin() {
   // New post form
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [twitterUrl, setTwitterUrl] = useState('');
   const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
@@ -48,20 +49,30 @@ export default function Admin() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!title.trim() || !content.trim()) return;
+
+    // Require at least title/content OR a twitter URL
+    if (!title.trim() && !content.trim() && !twitterUrl.trim()) {
+      setError('Please enter a title/content or a Twitter URL');
+      return;
+    }
 
     setLoading(true);
     setError(null);
 
     try {
+      const postData = {
+        title: title.trim(),
+        content: content.trim(),
+        twitterUrl: twitterUrl.trim() || null,
+        published: true,
+      };
+
       if (editingId) {
-        await updateNewsPost(token, editingId, { title, content });
+        await updateNewsPost(token, editingId, postData);
       } else {
-        await createNewsPost(token, { title, content, published: true });
+        await createNewsPost(token, postData);
       }
-      setTitle('');
-      setContent('');
-      setEditingId(null);
+      clearForm();
       await loadPosts();
     } catch (err) {
       setError(err.message || 'Failed to save post');
@@ -70,9 +81,17 @@ export default function Admin() {
     }
   }
 
+  function clearForm() {
+    setTitle('');
+    setContent('');
+    setTwitterUrl('');
+    setEditingId(null);
+  }
+
   function handleEdit(post) {
-    setTitle(post.title);
-    setContent(post.content);
+    setTitle(post.title || '');
+    setContent(post.content || '');
+    setTwitterUrl(post.twitterUrl || '');
     setEditingId(post.id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -164,20 +183,29 @@ export default function Admin() {
           <form onSubmit={handleSubmit} className="admin-form">
             <input
               type="text"
-              placeholder="Post title"
+              placeholder="Post title (optional if using Twitter)"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               className="admin-input"
-              required
             />
             <textarea
-              placeholder="Post content..."
+              placeholder="Post content (optional if using Twitter)..."
               value={content}
               onChange={(e) => setContent(e.target.value)}
               className="admin-textarea"
               rows={4}
-              required
             />
+            <div className="admin-twitter-section">
+              <label className="admin-label">Twitter/X Embed (optional)</label>
+              <input
+                type="url"
+                placeholder="Paste Twitter URL (e.g., https://twitter.com/user/status/123)"
+                value={twitterUrl}
+                onChange={(e) => setTwitterUrl(e.target.value)}
+                className="admin-input"
+              />
+              <p className="admin-helper">Paste a tweet URL to embed it in the news section</p>
+            </div>
             <div className="admin-form-actions">
               <button type="submit" className="admin-btn" disabled={loading}>
                 {loading ? 'Saving...' : editingId ? 'Update Post' : 'Create Post'}
@@ -186,11 +214,7 @@ export default function Admin() {
                 <button
                   type="button"
                   className="admin-btn admin-btn-secondary"
-                  onClick={() => {
-                    setEditingId(null);
-                    setTitle('');
-                    setContent('');
-                  }}
+                  onClick={clearForm}
                 >
                   Cancel
                 </button>
@@ -211,12 +235,19 @@ export default function Admin() {
                   className={`admin-post ${!post.published ? 'admin-post-draft' : ''}`}
                 >
                   <div className="admin-post-header">
-                    <h3>{post.title}</h3>
+                    <h3>{post.title || '(No title)'}</h3>
                     <span className={`admin-post-status ${post.published ? 'published' : 'draft'}`}>
                       {post.published ? 'Published' : 'Draft'}
                     </span>
                   </div>
-                  <p className="admin-post-content">{post.content}</p>
+                  {post.content && <p className="admin-post-content">{post.content}</p>}
+                  {post.twitterUrl && (
+                    <p className="admin-post-twitter">
+                      🐦 <a href={post.twitterUrl} target="_blank" rel="noopener noreferrer">
+                        {post.twitterUrl}
+                      </a>
+                    </p>
+                  )}
                   <div className="admin-post-meta">
                     <span>Created: {formatDate(post.createdAt)}</span>
                   </div>

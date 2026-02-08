@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { fetchNews } from '../../services/api';
+import TwitterEmbed from '../common/TwitterEmbed';
 import './NewsSection.css';
+import '../common/TwitterEmbed.css';
 
 export default function NewsSection() {
   const [posts, setPosts] = useState([]);
@@ -66,8 +68,9 @@ export default function NewsSection() {
         {posts.map((post) => (
           <article key={post.id} className="news-item">
             <time className="news-date">{formatDate(post.createdAt)}</time>
-            <h3 className="news-headline">{post.title}</h3>
-            <p className="news-content">{post.content}</p>
+            {post.title && <h3 className="news-headline">{post.title}</h3>}
+            {post.content && <p className="news-content">{post.content}</p>}
+            {post.twitterUrl && <TwitterEmbed url={post.twitterUrl} />}
           </article>
         ))}
       </div>

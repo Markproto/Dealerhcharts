@@ -1,0 +1,17 @@
+.twitter-embed {
+  margin: 0.5rem 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.twitter-embed .twitter-loading {
+  color: #666;
+  font-size: 0.75rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+/* Override Twitter embed styles for better fit */
+.twitter-embed .twitter-tweet {
+  margin: 0 !important;
+}

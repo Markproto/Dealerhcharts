@@ -28,15 +28,16 @@ router.get('/admin', adminAuth, async (req, res, next) => {
 // ADMIN: Create a new post
 router.post('/', adminAuth, async (req, res, next) => {
   try {
-    const { title, content, published } = req.body;
+    const { title, content, twitterUrl, published } = req.body;
 
-    if (!title || !content) {
-      return res.status(400).json({ error: 'Title and content are required' });
+    if (!title && !content && !twitterUrl) {
+      return res.status(400).json({ error: 'Title, content, or Twitter URL is required' });
     }
 
     const post = await newsStore.createPost({
-      title,
-      content,
+      title: title || '',
+      content: content || '',
+      twitterUrl: twitterUrl || null,
       published: published !== false,
     });
 
@@ -50,9 +51,9 @@ router.post('/', adminAuth, async (req, res, next) => {
 router.put('/:id', adminAuth, async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { title, content, published } = req.body;
+    const { title, content, twitterUrl, published } = req.body;
 
-    const post = await newsStore.updatePost(id, { title, content, published });
+    const post = await newsStore.updatePost(id, { title, content, twitterUrl, published });
 
     if (!post) {
       return res.status(404).json({ error: 'Post not found' });
