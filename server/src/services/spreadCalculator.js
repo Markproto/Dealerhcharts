@@ -12,6 +12,10 @@ const SPREAD_CONFIG = {
   XPT: { spreadPercent: 0.001 },  // Platinum: ~$1.00 on $1000 spot
   XPD: { spreadPercent: 0.002 },  // Palladium: ~$2.00 on $1000 spot
   BTC: { spreadPercent: 0.001 },  // Bitcoin: ~$100 on $100k spot
+  OIL: { spreadPercent: 0.0005 }, // Crude Oil: ~$0.04 on $75 spot
+  USD: { spreadPercent: 0.0001 }, // USD Index: minimal spread (index)
+  HG: { spreadPercent: 0.001 },   // Copper: ~$0.004 on $4 spot
+  SPX: { spreadPercent: 0.0001 }, // S&P 500: minimal spread (index)
 };
 
 /**
