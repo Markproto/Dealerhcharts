@@ -40,12 +40,11 @@ export default function TraditionalLayout({
 
           <SpotCards prices={prices} previousPrices={previousPrices} />
           <PriceTable prices={prices} previousPrices={previousPrices} />
+          <VideoSection />
         </main>
 
         <NewsSection />
       </div>
-
-      <VideoSection />
 
       <Footer lastUpdated={lastUpdated} />
     </div>
