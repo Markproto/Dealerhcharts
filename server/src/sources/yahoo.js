@@ -48,12 +48,24 @@ async function fetchYahooSingle(metal) {
     const price = meta?.regularMarketPrice || 0;
     if (!price) return null;
 
+    const previousClose = meta.chartPreviousClose || meta.previousClose || null;
+
+    // Calculate change from previous close
+    let change = null;
+    let changePercent = null;
+    if (previousClose && previousClose > 0) {
+      change = parseFloat((price - previousClose).toFixed(2));
+      changePercent = parseFloat((((price - previousClose) / previousClose) * 100).toFixed(2));
+    }
+
     return {
       metal: metal.symbol,
       bid: null,
       ask: null,
       spot: price,
-      previousClose: meta.chartPreviousClose || meta.previousClose || null,
+      change,
+      changePercent,
+      previousClose,
       source: 'yahoo',
       timestamp: Date.now(),
     };
