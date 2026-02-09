@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useMetalPrices } from './hooks/useMetalPrices';
+import { useSEO } from './hooks/useSEO';
 import TraditionalLayout from './components/layout/TraditionalLayout';
 import Admin from './pages/Admin';
 
@@ -12,6 +13,9 @@ function HomePage() {
     stale,
     lastUpdated,
   } = useMetalPrices();
+
+  // Update page title and meta with live gold/silver prices
+  useSEO(prices);
 
   return (
     <TraditionalLayout
