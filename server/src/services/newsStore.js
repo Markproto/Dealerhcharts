@@ -50,13 +50,14 @@ async function getPostById(id) {
   return posts.find((p) => p.id === id) || null;
 }
 
-async function createPost({ title, content, twitterUrl, published = true }) {
+async function createPost({ title, content, twitterUrl, rumbleUrl, published = true }) {
   const posts = await readPosts();
   const newPost = {
     id: generateId(),
     title,
     content,
     twitterUrl: twitterUrl || null,
+    rumbleUrl: rumbleUrl || null,
     published,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),

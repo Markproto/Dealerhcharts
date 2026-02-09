@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { fetchNews } from '../../services/api';
 import TwitterEmbed from '../common/TwitterEmbed';
+import RumbleEmbed from '../common/RumbleEmbed';
 import './NewsSection.css';
 import '../common/TwitterEmbed.css';
+import '../common/RumbleEmbed.css';
 
 export default function NewsSection() {
   const [posts, setPosts] = useState([]);
@@ -71,6 +73,7 @@ export default function NewsSection() {
             {post.title && <h3 className="news-headline">{post.title}</h3>}
             {post.content && <p className="news-content">{post.content}</p>}
             {post.twitterUrl && <TwitterEmbed url={post.twitterUrl} />}
+            {post.rumbleUrl && <RumbleEmbed url={post.rumbleUrl} />}
           </article>
         ))}
       </div>

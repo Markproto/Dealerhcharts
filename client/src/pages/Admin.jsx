@@ -18,6 +18,7 @@ export default function Admin() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [twitterUrl, setTwitterUrl] = useState('');
+  const [rumbleUrl, setRumbleUrl] = useState('');
   const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
@@ -50,9 +51,9 @@ export default function Admin() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    // Require at least title/content OR a twitter URL
-    if (!title.trim() && !content.trim() && !twitterUrl.trim()) {
-      setError('Please enter a title/content or a Twitter URL');
+    // Require at least title/content OR a twitter/rumble URL
+    if (!title.trim() && !content.trim() && !twitterUrl.trim() && !rumbleUrl.trim()) {
+      setError('Please enter a title/content or a Twitter/Rumble URL');
       return;
     }
 
@@ -64,6 +65,7 @@ export default function Admin() {
         title: title.trim(),
         content: content.trim(),
         twitterUrl: twitterUrl.trim() || null,
+        rumbleUrl: rumbleUrl.trim() || null,
         published: true,
       };
 
@@ -85,6 +87,7 @@ export default function Admin() {
     setTitle('');
     setContent('');
     setTwitterUrl('');
+    setRumbleUrl('');
     setEditingId(null);
   }
 
@@ -92,6 +95,7 @@ export default function Admin() {
     setTitle(post.title || '');
     setContent(post.content || '');
     setTwitterUrl(post.twitterUrl || '');
+    setRumbleUrl(post.rumbleUrl || '');
     setEditingId(post.id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -206,6 +210,17 @@ export default function Admin() {
               />
               <p className="admin-helper">Paste a tweet URL to embed it in the news section</p>
             </div>
+            <div className="admin-rumble-section">
+              <label className="admin-label">Rumble Video (optional)</label>
+              <input
+                type="url"
+                placeholder="Paste Rumble URL (e.g., https://rumble.com/embed/v...)"
+                value={rumbleUrl}
+                onChange={(e) => setRumbleUrl(e.target.value)}
+                className="admin-input"
+              />
+              <p className="admin-helper">Paste a Rumble embed URL to show video below the charts</p>
+            </div>
             <div className="admin-form-actions">
               <button type="submit" className="admin-btn" disabled={loading}>
                 {loading ? 'Saving...' : editingId ? 'Update Post' : 'Create Post'}
@@ -245,6 +260,13 @@ export default function Admin() {
                     <p className="admin-post-twitter">
                       🐦 <a href={post.twitterUrl} target="_blank" rel="noopener noreferrer">
                         {post.twitterUrl}
+                      </a>
+                    </p>
+                  )}
+                  {post.rumbleUrl && (
+                    <p className="admin-post-rumble">
+                      🎬 <a href={post.rumbleUrl} target="_blank" rel="noopener noreferrer">
+                        {post.rumbleUrl}
                       </a>
                     </p>
                   )}

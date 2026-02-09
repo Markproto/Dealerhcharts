@@ -4,6 +4,7 @@ import ScrollingTicker from '../ticker/ScrollingTicker';
 import SpotCards from '../prices/SpotCards';
 import PriceTable from '../prices/PriceTable';
 import NewsSection from '../news/NewsSection';
+import VideoSection from '../video/VideoSection';
 import './TraditionalLayout.css';
 
 export default function TraditionalLayout({
@@ -43,6 +44,8 @@ export default function TraditionalLayout({
 
         <NewsSection />
       </div>
+
+      <VideoSection />
 
       <Footer lastUpdated={lastUpdated} />
     </div>
