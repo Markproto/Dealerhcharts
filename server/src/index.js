@@ -2,12 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const path = require('path');
 const env = require('./config/env');
 const errorHandler = require('./middleware/errorHandler');
 const pricesRouter = require('./routes/prices');
 const healthRouter = require('./routes/health');
 const newsRouter = require('./routes/news');
 const { startWorker } = require('./services/priceWorker');
+
+// Path to client build (for production static serving)
+const CLIENT_BUILD_PATH = path.join(__dirname, '../../client/dist');
 
 const app = express();
 
@@ -43,6 +47,16 @@ app.use(
 app.use('/api/prices', pricesRouter);
 app.use('/api/health', healthRouter);
 app.use('/api/news', newsRouter);
+
+// Serve static files from client build (production)
+if (env.NODE_ENV === 'production') {
+  app.use(express.static(CLIENT_BUILD_PATH));
+
+  // SPA fallback - serve index.html for all non-API routes
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(CLIENT_BUILD_PATH, 'index.html'));
+  });
+}
 
 // Error handling
 app.use(errorHandler);
