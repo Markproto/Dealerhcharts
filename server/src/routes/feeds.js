@@ -88,4 +88,14 @@ router.post('/fetch', adminAuth, async (req, res, next) => {
   }
 });
 
+// ADMIN: Reset feeds to defaults
+router.post('/reset', adminAuth, async (req, res, next) => {
+  try {
+    const feeds = await feedStore.resetFeeds();
+    res.json({ success: true, feeds });
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

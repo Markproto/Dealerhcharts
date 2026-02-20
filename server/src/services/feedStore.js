@@ -9,10 +9,10 @@ const FEEDS_FILE = path.join(DATA_DIR, 'rss-feeds.json');
  */
 const DEFAULT_FEEDS = [
   {
-    id: 'zerohedge-commodities',
-    name: 'Zero Hedge Commodities',
-    url: 'https://www.zerohedge.com/commodities/feed',
-    source: 'ZeroHedge',
+    id: 'kitco-mining',
+    name: 'Kitco Mining News',
+    url: 'https://www.kitco.com/news/category/mining/rss',
+    source: 'Kitco',
     enabled: true,
     createdAt: new Date().toISOString(),
   },
@@ -135,10 +135,19 @@ function extractSource(url) {
   }
 }
 
+/**
+ * Reset feeds to defaults
+ */
+async function resetFeeds() {
+  await writeFeeds(DEFAULT_FEEDS);
+  return DEFAULT_FEEDS;
+}
+
 module.exports = {
   getAllFeeds,
   getEnabledFeeds,
   createFeed,
   updateFeed,
   deleteFeed,
+  resetFeeds,
 };
