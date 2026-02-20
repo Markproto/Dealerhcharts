@@ -70,8 +70,23 @@ export default function NewsSection() {
         {posts.map((post) => (
           <article key={post.id} className="news-item">
             <time className="news-date">{formatDate(post.createdAt)}</time>
-            {post.title && <h3 className="news-headline">{post.title}</h3>}
+            {post.title && (
+              <h3 className="news-headline">
+                {post.sourceUrl ? (
+                  <a href={post.sourceUrl} target="_blank" rel="noopener noreferrer">
+                    {post.title}
+                  </a>
+                ) : (
+                  post.title
+                )}
+              </h3>
+            )}
             {post.content && <p className="news-content">{post.content}</p>}
+            {post.sourceUrl && (
+              <a href={post.sourceUrl} target="_blank" rel="noopener noreferrer" className="news-source-link">
+                Read full article →
+              </a>
+            )}
             {post.twitterUrl && <TwitterEmbed url={post.twitterUrl} />}
             {post.rumbleUrl && <RumbleEmbed url={post.rumbleUrl} />}
           </article>
