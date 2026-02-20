@@ -8,7 +8,9 @@ const errorHandler = require('./middleware/errorHandler');
 const pricesRouter = require('./routes/prices');
 const healthRouter = require('./routes/health');
 const newsRouter = require('./routes/news');
+const feedsRouter = require('./routes/feeds');
 const { startWorker } = require('./services/priceWorker');
+const { startRssCron } = require('./services/rssFetcher');
 
 // Path to client build (for production static serving)
 const CLIENT_BUILD_PATH = path.join(__dirname, '../../client/dist');
@@ -47,6 +49,7 @@ app.use(
 app.use('/api/prices', pricesRouter);
 app.use('/api/health', healthRouter);
 app.use('/api/news', newsRouter);
+app.use('/api/feeds', feedsRouter);
 
 // Serve static files from client build (production)
 if (env.NODE_ENV === 'production') {
@@ -67,4 +70,5 @@ app.listen(env.PORT, () => {
     `[Server] Dealercharts API running on port ${env.PORT} (${env.NODE_ENV})`
   );
   startWorker();
+  startRssCron();
 });
