@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { METALS } = require('shared');
+const { METALS } = require('../../../shared/metals-config');
 const env = require('../config/env');
 
 const FMP_BASE_URL = 'https://financialmodelingprep.com/api/v3';

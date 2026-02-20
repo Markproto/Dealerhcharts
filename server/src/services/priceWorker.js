@@ -1,5 +1,5 @@
 const cron = require('node-cron');
-const { METAL_SYMBOLS } = require('shared');
+const { METAL_SYMBOLS } = require('../../../shared/metals-config');
 const cache = require('./cacheManager');
 const { applySpread } = require('./spreadCalculator');
 const { fetchFizTrade } = require('../sources/fiztrade');

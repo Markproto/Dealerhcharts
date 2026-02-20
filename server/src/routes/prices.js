@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { METALS } = require('shared');
+const { METALS } = require('../../../shared/metals-config');
 const cache = require('../services/cacheManager');
 
 const router = Router();
